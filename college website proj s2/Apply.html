@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission form - NIT</title>
+    <link rel="stylesheet" href="apply.css">
+</head>
+<body>
+<header></header>
+<nav class="navg">
+
+<img src="logo.png" alt="college building" class="logo">
+  <a href="HOME PAGE.html">Home</a>
+  <a href="HOME PAGE.html#section1">About</a>
+  <a href="HOME PAGE.html#section3">News</a>
+  <a href="HOME PAGE.html#section4">Contact</a>
+</nav>
+	
+	<div class="wrapper">
+		<div class="r_form_wrap">
+			<div class="title">
+				<p>Admission form</p>
+			</div>
+			<div class="r_form">
+				<form method="post" action="connect.php" enctype="multipart/form-data" onsubmit="return validateForm()">
+					<div class="input_wrap">
+						<div class="input_item">
+							<input type="text" name="fullname" class="input" id="yourname" placeholder="FullName" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<div class="input_item">
+							<input type="text" name="email" class="input" id="emailaddress" placeholder="Email ID" required>
+						</div>
+					</div>
+					<div class="input_wrap" >
+						<div class="input_item" >
+							<input type="text" name="phone" class="input" id="phone" placeholder="Mobile Number" required>
+						</div>
+					</div>
+					<div class="input_wrap" >
+						<label style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Gender</label>
+						<div class="input_radio">
+							<div class="input_radio_item">
+								<input type="radio" id="male" name="gender" class="radio" value="male" checked>
+								<label for="male" class="radio_mark">
+								MALE</label>
+							</div>
+							<div class="input_radio_item">
+								<input type="radio" id="female" name="gender" class="radio" value="female">
+								<label for="female" class="radio_mark">
+									FEMALE</label>
+							</div>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label for="dob" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Date Of Birth</label>
+						<div class="input_item">
+							<input type="date" name="dob" class="input" id="dob" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<div class="input_item">
+							<select id="course" name="cars" class="input" required>
+								<option> Select the Course</option>
+								<option> BTech</option>
+								<option> BCA</option>
+								<option> BA</option>
+								<option> BCom</option>
+								<option> MCA</option>
+								<option> MTech</option>
+								<option> MCom</option>
+								<option> BSc Physics</option>
+								<option> BArch</option>
+							</select>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<label for="file" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Identity proof</label>
+						<div class="input_item">
+							<input type="file" name="file" class="input" id="file" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<div class="input_item">
+							<input type="password" name="password" class="input" id="password" placeholder="Enter the password" required>
+						</div>
+					</div>
+					<div class="input_wrap">
+						<div class="input_item">
+							<input type="password" name="confirmpassword" class="input" id="confirmpassword" placeholder="Enter the confirm password" required>
+						</div>
+					</div>
+					<input type="submit" class="button" value="Submit">
+					<input type="reset" class="clear_ad" value="Clear">
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	</section>
+	<div class="none_div">
+
+	</div>
+	</body>
+	<!-- Javascript for this Web page -->
+
+<script>
+function validateForm() {
+    let name = document.getElementById('yourname').value;
+    let email = document.getElementById('emailaddress').value;
+    let phone = document.getElementById('phone').value;
+    let dob = document.getElementById('dob').value;
+    let course = document.getElementById('course').value;
+    let fileInput = document.getElementById('file');
+    let password = document.getElementById('password').value;
+    let confirmPassword = document.getElementById('confirmpassword').value;
+    
+    // Name validation
+    if (name.trim() === "") {
+        alert("Name must be filled out");
+        return false;
+    }
+
+    // Email validation
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        return false;
+    }
+
+    // Phone number validation
+    let phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phone)) {
+        alert("Please enter a valid 10-digit phone number");
+        return false;
+    }
+
+    // Date of birth validation
+    if (dob === "") {
+        alert("Please select a date of birth");
+        return false;
+    }
+
+    // Course selection validation
+    if (course === "select") {
+        alert("Please select a course");
+        return false;
+    }
+
+    // File validation
+    let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+    if (!allowedExtensions.exec(fileInput.value)) {
+        alert("Please upload a valid file. Only JPG, JPEG, PNG, and PDF formats are allowed.");
+        fileInput.value = '';
+        return false;
+    }
+
+    if (fileInput.files[0].size > 5000000) { // 5 MB limit
+        alert("File size must be less than 5 MB");
+        fileInput.value = '';
+        return false;
+    }
+
+    // Password validation
+    if (password === "") {
+        alert("Password must be filled out");
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return false;
+    }
+
+    // If all validations pass, redirect to thankyou.html
+    window.location.href = "thanks.html";
+    return false;  // This prevents the default form submission and lets us redirect
+}
+</script>
+
+
+
+
+</html>
+
+
