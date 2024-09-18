@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function()
     });
 
     // API Key and setup
-    const API_KEY = "sk-proj-IJew4ed7RTjg4WJ8xHO2T3BlbkFJqxXRrltngsZmUhuRXjrn";
+    const API_KEY = "<api key here>";
     const API_URL = "https://api.openai.com/v1/chat/completions"; //OpenAi API link to access
     //there seems to be some runtime error with API key since the requests are not going through
 
