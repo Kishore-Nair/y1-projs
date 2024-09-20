@@ -1,5 +1,5 @@
 import webbrowser
-import os
+#import os
 import speech_recognition as sr
 import datetime
 from feature.customvoice import speak
@@ -19,10 +19,10 @@ def takecommand():
             print("interpreting...")
             return query.lower()
         except sr.UnknownValueError:
-            print("Sorry, I did not understand what you said. Please try again.")
+            speak("Sorry, I did not understand what you said. Please try again.")
             return None
         except sr.RequestError as e:
-            print(f"Could not request results from Google Speech Recognition service; {e}")
+            speak(f"Could not request results from Google Speech Recognition service; {e}")
             return None
 
 
@@ -36,13 +36,15 @@ if __name__ == "__main__":
             speak("goodbye!")
             exit()
 
+
+        #AI mode
         if "Invoke Lama".lower() in query.lower():
             speak("Llama activated! How may I help you?")
             while True:
                 print("llama listening...")
                 query = takecommand()
-                if query == "exit lama":
-                    speak("exited llama mode!")
+                if  "exit lama" in query:
+                    speak(handle_convo("bye"))
                     break
 
                 result = handle_convo(query)
@@ -71,6 +73,15 @@ if __name__ == "__main__":
                 speak(f"opening {site[0]}...")
                 webbrowser.open(site[1])
 
+        import re
+        if re.search(r'\bsearch\b', query, re.IGNORECASE) and re.search(r'\bgoogle\b', query, re.IGNORECASE):
+            search_term = query.split("search")[-1].strip().replace("on google", "").replace("in google", "").strip()
+            if search_term:
+                speak(f"Sure! Searching for {search_term} on Google.")
+                webbrowser.open(f"https://www.google.com/search?q={search_term}")
+            else:
+                speak("What would you like to search for?")
+
         #open apps
         import subprocess
         import sys
@@ -94,6 +105,7 @@ if __name__ == "__main__":
 
         for app in apps:
             if f"open {app[0].lower()}" in query.lower():
+                speak(f"sure!, opening {app[0]}...")
                 opener = "open" if sys.platform == "darwin" else "xdg-open"
                 try:
                     subprocess.call([opener, f"/System/Applications/{app[1]}"])
@@ -106,5 +118,26 @@ if __name__ == "__main__":
             hour = datetime.datetime.now().strftime("%H")
             mins = datetime.datetime.now().strftime("%M")
             speak(f"the time is {hour} hours and {mins} minutes")
+        if "set a timer for" in query:
+            try:
+                timer_duration = int(query.split("set a timer for")[-1].split("minutes")[0].strip())
+                speak(f"Timer set for {timer_duration} minutes.")
+                time.sleep(timer_duration * 60)
+                speak("Time's up!")
+            except Exception as e:
+                speak(f"Sorry, I couldn't set the timer. {str(e)}")
+
+        #battery
+        import psutil
+        def check_battery():
+            battery = psutil.sensors_battery()
+            percent = battery.percent
+            speak(f"Your battery is at {percent}%")
+            if not battery.power_plugged:
+                speak("Your charger is not plugged in.")
+            else:
+                speak("Your charger is plugged in.")
 
 
+        if "battery" in query:
+            check_battery()
