@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = "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" # Replace this with your API key
+openai.api_key = "" # Replace this with your API key
 
 print("ChatGPT: Hi, I'm ChatGPT. I'm a helpful assistant")
 messages = [
