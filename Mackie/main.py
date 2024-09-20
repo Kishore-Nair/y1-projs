@@ -17,6 +17,7 @@ def takecommand():
             print("recognizing...")
             query = r.recognize_google(audio , language='en-in')
             print(f"user said:{query}\n")
+            say(f"{query}")
             return query.lower()
         except sr.UnknownValueError:
             print("Sorry, I did not understand what you said. Please try again.")
