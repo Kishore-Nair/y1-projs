@@ -6,11 +6,14 @@ A collection of coding projects I built during my first-year semester break, cov
 
 ## 📂 **Projects**
 
-### 1. **Small Games**
+### 1. **Small Game**
 - **Tic-Tac-Toe**: Classic game. *(Python)*
 
-### 2. **AI Starter Projects**
-- **Maggie**: An Ollama powered assistant that speaks and does some operations on PC. 
+### 2. **AI Starter Project**
+- **Maggie**: An Ollama powered assistant that speaks and does some operations on PC.
+
+### 3. **Webdev trial**
+- **college website**: A simple college website that built using HTML/CSS/JS where I tried intergrating AI chatbot but was unsuccessful in doing so. 
 
 ---
 
