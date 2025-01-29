@@ -7,18 +7,10 @@ A collection of coding projects I built during my first-year semester break, cov
 ## 📂 **Projects**
 
 ### 1. **Small Games**
-- **Tic-Tac-Toe**: Classic game with basic AI. *(Python)*
-- more soon...
+- **Tic-Tac-Toe**: Classic game. *(Python)*
 
 ### 2. **AI Starter Projects**
-- more soon...
-
----
-
-## 🛠 **Tech Stack**
-
-- **Languages**: Python, *(more soon...)*
-- **Libraries**: *(more soon...)*
+- **Maggie**: An Ollama powered assistant that speaks and does some operations on PC. 
 
 ---
 
